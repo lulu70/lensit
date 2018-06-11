@@ -4,6 +4,7 @@ import { Input, Label, Divider, Button, Header, Image } from 'semantic-ui-react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import transperantLogo from './assets/1024 trans.png'
+import throttle from 'lodash/throttle'
 
 class App extends Component {
   state = {
@@ -14,11 +15,23 @@ class App extends Component {
     heightOnFocus: false
   }
 
-  // round helper method for all values:
-  round = num => (Math.round(num * 10) / 10).toString()
-
   componentDidMount() {
-    //get state from local storage:
+    this.getStateFromLocalStorage()
+  }
+
+  componentDidUpdate = () => {
+    this.saveStateToLocalStorage()
+  }
+
+  saveStateToLocalStorage = throttle(() => {
+    try {
+      localStorage.setItem('state', JSON.stringify(this.state))
+    } catch (error) {
+      console.error(error)
+    }
+  }, 1000)
+
+  getStateFromLocalStorage = () => {
     try {
       const localStorageState = localStorage.getItem('state')
       localStorageState && this.setState(JSON.parse(localStorageState))
@@ -26,15 +39,8 @@ class App extends Component {
       console.error(error)
     }
   }
-
-  componentDidUpdate = () => {
-    //save state to local storage:
-    try {
-      localStorage.setItem('state', JSON.stringify(this.state))
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  // round helper method for all values:
+  round = num => (Math.round(num * 10) / 10).toString()
 
   handleWidthChange = e => {
     this.setState({
