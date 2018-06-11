@@ -215,7 +215,7 @@ class App extends Component {
                 : this.handle4By3Click
             }
           >
-            {this.state.aspectRatio === 4 / 3 ? '16/9' : '3/4'}
+            {this.state.aspectRatio === 4 / 3 ? 'Change To 16/9' : 'Change To 4/3'}
           </Button>
           <Button
             basic

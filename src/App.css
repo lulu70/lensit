@@ -18,7 +18,9 @@
   position: relative;
 }
 
-#calc::after {
+/* alpha background:   */
+
+/* #calc::after {
   content: '';
   background: url('./assets/1024.png');
   background-repeat: no-repeat;
@@ -31,7 +33,7 @@
   right: 0;
   bottom: 0;
   z-index: -1;
-}
+} */
 
 input {
   color: #21ba45 !important;
