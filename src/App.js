@@ -138,7 +138,7 @@ class App extends Component {
       ? ''
       : this.round(this.state.widthValue / this.state.aspectRatio)
     const distance = this.round(this.state.distanceValue)
-    const lens = Number.isFinite(Number(this.round(distance / width)))
+    const lens = isFinite(Number(this.round(distance / width)))
       ? this.round(distance / width)
       : '0'
     return (
