@@ -205,26 +205,30 @@ class App extends Component {
             Lens Factor: {lens}
           </Label>
           <Divider />
-          <Button
-            basic
-            color="green"
-            fluid
-            onClick={
-              this.state.aspectRatio === 4 / 3
-                ? this.handle16By9Click
-                : this.handle4By3Click
-            }
-          >
-            {this.state.aspectRatio === 4 / 3 ? 'Change To 16/9' : 'Change To 4/3'}
-          </Button>
-          <Button
-            basic
-            color="green"
-            fluid
-            onClick={this.handleChangeToFeetClick}
-          >
-            {this.state.metricSystem ? 'Change To Feet' : 'Change To Meters'}
-          </Button>
+          <Button.Group vertical>
+            <Button
+              basic
+              color="green"
+              fluid
+              onClick={
+                this.state.aspectRatio === 4 / 3
+                  ? this.handle16By9Click
+                  : this.handle4By3Click
+              }
+            >
+              {this.state.aspectRatio === 4 / 3
+                ? 'Change To 16/9'
+                : 'Change To 4/3'}
+            </Button>
+            <Button
+              basic
+              color="green"
+              fluid
+              onClick={this.handleChangeToFeetClick}
+            >
+              {this.state.metricSystem ? 'Change To Feet' : 'Change To Meters'}
+            </Button>
+          </Button.Group>
         </div>
       </div>
     )
