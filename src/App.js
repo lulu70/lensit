@@ -1,18 +1,34 @@
 import React, { Component } from 'react'
 import './App.css'
-import { Input, Label, Divider, Button, Header, Image } from 'semantic-ui-react'
+import {
+  Input,
+  Label,
+  Divider,
+  Button,
+  Header,
+  Image,
+  Popup
+} from 'semantic-ui-react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import transperantLogo from './assets/1024 trans.png'
 import throttle from 'lodash/throttle'
+import CustomForm from './CustomForm'
 
 class App extends Component {
   state = {
+    aspectRatioMode: 'sBN',
     aspectRatio: 16 / 9,
     widthValue: 1,
     distanceValue: 1,
     metricSystem: true,
-    heightOnFocus: false
+    heightOnFocus: false,
+    customForm: {
+      fields: {
+        costumWidth: '1920',
+        costumHeight: '1200'
+      }
+    }
   }
 
   componentDidMount() {
@@ -75,7 +91,7 @@ class App extends Component {
     })
   }
 
-  handleFocuse = e => {
+  handlefocus = e => {
     switch (e.target.name) {
       case 'width': {
         this.setState({ ...this.state, widthValue: '' })
@@ -87,6 +103,32 @@ class App extends Component {
       }
       case 'distance': {
         this.setState({ ...this.state, distanceValue: '' })
+        break
+      }
+      case 'costumWidth': {
+        this.setState({
+          ...this.state,
+          customForm: {
+            ...this.state.customForm,
+            fields: {
+              ...this.state.customForm.fields,
+              costumWidth: ''
+            }
+          }
+        })
+        break
+      }
+      case 'costumHeight': {
+        this.setState({
+          ...this.state,
+          customForm: {
+            ...this.state.customForm,
+            fields: {
+              ...this.state.customForm.fields,
+              costumHeight: ''
+            }
+          }
+        })
         break
       }
       default: {
@@ -111,13 +153,15 @@ class App extends Component {
   handle16By9Click = () => {
     this.setState({
       ...this.state,
-      aspectRatio: 16 / 9
+      aspectRatio: 16 / 9,
+      aspectRatioMode: 'sBN'
     })
   }
   handle4By3Click = () => {
     this.setState({
       ...this.state,
-      aspectRatio: 4 / 3
+      aspectRatio: 4 / 3,
+      aspectRatioMode: 'fBT'
     })
   }
   handleChangeToFeetClick = () => {
@@ -130,6 +174,31 @@ class App extends Component {
       distanceValue: this.state.metricSystem
         ? this.state.distanceValue * 3.28084
         : this.state.distanceValue / 3.28084
+    })
+  }
+  onCustomFormInputChange = data => {
+    const name = data.name
+    const value = data.value
+    const fields = { ...this.state.customForm.fields }
+    fields[name] = value
+    this.setState(
+      {
+        ...this.state,
+        customForm: {
+          ...this.state.customForm,
+          fields
+        }
+      },
+      this.changeCustomRatio
+    )
+  }
+  changeCustomRatio = () => {
+    const width = this.state.customForm.fields.costumWidth
+    const height = this.state.customForm.fields.costumHeight
+    this.setState({
+      ...this.state,
+      aspectRatio: width / height,
+      aspectRatioMode: 'custom'
     })
   }
   render() {
@@ -158,7 +227,7 @@ class App extends Component {
             placeholder=""
             value={width}
             onChange={this.handleWidthChange}
-            onFocus={this.handleFocuse}
+            onFocus={this.handlefocus}
           />
           <Slider
             min={1}
@@ -177,7 +246,7 @@ class App extends Component {
             placeholder=""
             value={height}
             onChange={this.handleHeightChange}
-            onFocus={this.handleFocuse}
+            onFocus={this.handlefocus}
             onBlur={this.handleBlur}
           />
           <Divider />
@@ -190,7 +259,7 @@ class App extends Component {
             placeholder=""
             value={distance}
             onChange={this.handleDistanceChange}
-            onFocus={this.handleFocuse}
+            onFocus={this.handlefocus}
           />
           <Slider
             type="range"
@@ -205,30 +274,56 @@ class App extends Component {
             Lens Factor: {lens}
           </Label>
           <Divider />
-          <Button.Group vertical>
+          <Button.Group widths="3">
             <Button
               basic
-              color="green"
-              fluid
-              onClick={
-                this.state.aspectRatio === 4 / 3
-                  ? this.handle16By9Click
-                  : this.handle4By3Click
+              color={this.state.aspectRatioMode === 'sBN' ? 'green' : 'grey'}
+              onClick={this.handle16By9Click}
+            >
+              16:9
+            </Button>
+
+            <Button
+              basic
+              color={this.state.aspectRatioMode === 'fBT' ? 'green' : 'grey'}
+              onClick={this.handle4By3Click}
+            >
+              4:3
+            </Button>
+            <Popup
+              on="click"
+              position="top center"
+              trigger={
+                <Button
+                  basic
+                  color={
+                    this.state.aspectRatioMode === 'custom' ? 'green' : 'grey'
+                  }
+                  onClick={this.changeCustomRatio}
+                >
+                  Custom
+                </Button>
               }
-            >
-              {this.state.aspectRatio === 4 / 3
-                ? 'Change To 16/9'
-                : 'Change To 4/3'}
-            </Button>
-            <Button
-              basic
-              color="green"
-              fluid
-              onClick={this.handleChangeToFeetClick}
-            >
-              {this.state.metricSystem ? 'Change To Feet' : 'Change To Meters'}
-            </Button>
+              content={
+                <CustomForm
+                  fields={this.state.customForm.fields}
+                  onInputChange={this.onCustomFormInputChange}
+                  onCustomRatioClicked={this.onCustomRatioClicked}
+                  handlefocus={this.handlefocus}
+                  handleBlur={this.handleBlur}
+                />
+              }
+            />
           </Button.Group>
+          <Divider hidden />
+          <Button
+            basic
+            color="green"
+            fluid
+            onClick={this.handleChangeToFeetClick}
+          >
+            {this.state.metricSystem ? 'Change To Feet' : 'Change To Meters'}
+          </Button>
         </div>
       </div>
     )
