@@ -292,7 +292,8 @@ class App extends Component {
             </Button>
             <Popup
               on="click"
-              position="top center"
+              position="top right"
+              verticalOffset={120}
               trigger={
                 <Button
                   basic
