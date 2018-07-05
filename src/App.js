@@ -6,8 +6,8 @@ import {
   Divider,
   Button,
   Header,
-  Image,
-  Popup
+  Image
+  //Popup
 } from 'semantic-ui-react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
@@ -290,7 +290,7 @@ class App extends Component {
             >
               4:3
             </Button>
-            <Popup
+            {/* <Popup
               on="click"
               position="top right"
               verticalOffset={120}
@@ -314,7 +314,7 @@ class App extends Component {
                   handleBlur={this.handleBlur}
                 />
               }
-            />
+            /> */}
           </Button.Group>
           <Divider hidden />
           <Button
