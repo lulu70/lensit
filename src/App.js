@@ -7,13 +7,11 @@ import {
   Button,
   Header,
   Image
-  //Popup
 } from 'semantic-ui-react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 import transperantLogo from './assets/1024 trans.png'
 import throttle from 'lodash/throttle'
-import CustomForm from './CustomForm'
 
 class App extends Component {
   state = {

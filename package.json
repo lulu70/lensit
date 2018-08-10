@@ -2,6 +2,7 @@
   "name": "lensit",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://leoniko.net/lensit",
   "devDependencies": {
     "react-scripts": "1.1.4"
   },
