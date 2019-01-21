@@ -174,31 +174,6 @@ class App extends Component {
         : this.state.distanceValue / 3.28084
     })
   }
-  onCustomFormInputChange = data => {
-    const name = data.name
-    const value = data.value
-    const fields = { ...this.state.customForm.fields }
-    fields[name] = value
-    this.setState(
-      {
-        ...this.state,
-        customForm: {
-          ...this.state.customForm,
-          fields
-        }
-      },
-      this.changeCustomRatio
-    )
-  }
-  changeCustomRatio = () => {
-    const width = this.state.customForm.fields.costumWidth
-    const height = this.state.customForm.fields.costumHeight
-    this.setState({
-      ...this.state,
-      aspectRatio: width / height,
-      aspectRatioMode: 'custom'
-    })
-  }
   render() {
     const width = this.round(this.state.widthValue)
     const height = this.state.heightOnFocus
@@ -288,31 +263,6 @@ class App extends Component {
             >
               4:3
             </Button>
-            {/* <Popup
-              on="click"
-              position="top right"
-              verticalOffset={120}
-              trigger={
-                <Button
-                  basic
-                  color={
-                    this.state.aspectRatioMode === 'custom' ? 'green' : 'grey'
-                  }
-                  onClick={this.changeCustomRatio}
-                >
-                  Custom
-                </Button>
-              }
-              content={
-                <CustomForm
-                  fields={this.state.customForm.fields}
-                  onInputChange={this.onCustomFormInputChange}
-                  onCustomRatioClicked={this.onCustomRatioClicked}
-                  handlefocus={this.handlefocus}
-                  handleBlur={this.handleBlur}
-                />
-              }
-            /> */}
           </Button.Group>
           <Divider hidden />
           <Button
