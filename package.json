@@ -2,7 +2,7 @@
   "name": "lensit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lensit.safeframeapps.net/",
+  "homepage": "https://lensit.safeframeapps.com/",
   "devDependencies": {
     "react-scripts": "1.1.4"
   },
