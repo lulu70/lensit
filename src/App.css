@@ -1,4 +1,7 @@
 .App {
+  --mainColor: #21ba45;
+  --secondColor: grey;
+  --darkBG: #171717;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -6,51 +9,43 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 
 #calc {
-  border: solid #21ba45 1px;
+  border: solid var(--secondColor) 1px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  padding: 25px;
-  border-radius: 10px;
+  padding-top: 25px;
   position: relative;
+  width: 350px;
 }
 
-/* alpha background:   */
-
-/* #calc::after {
-  content: '';
-  background: url('./assets/1024.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-} */
-
-input {
-  color: #21ba45 !important;
+.button {
+  flex: 1;
+  padding: 1rem;
+  background-color: var(--darkBG);
+  font-size: 1.5rem;
+  border-top: solid 1px var(--secondColor);
+  border-bottom: solid 1px var(--secondColor);
+  border-right: 0;
+  border-left: 0;
+  outline: 0;
 }
-
-/* mobile: */
-
-@media (max-width: 991px) {
-  #calc {
-    width: 95vw;
-  }
+.buttonsContainer {
+  display: flex;
 }
-
-/* desktop: */
-
-@media (min-width: 992px) {
-  #calc {
-    width: 25vw;
-  }
+.verticalDivider {
+  border: solid var(--secondColor) 1px;
+}
+.styledRow {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mainColor);
+  background-color: var(--darkBG);
+  border-top: solid 1px var(--secondColor);
+  border-bottom: solid 1px var(--secondColor);
+  padding: 1rem;
+  font-size: 2rem;
 }
