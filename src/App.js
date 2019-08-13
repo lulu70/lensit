@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     aspectRatioMode: 'sBN',
     aspectRatio: 16 / 9,
-    widthValue: 1,
+    widthValue: 16,
     distanceValue: 1,
     metricSystem: true,
     heightOnFocus: false,
