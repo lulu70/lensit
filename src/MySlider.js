@@ -18,7 +18,7 @@ const MySlider = ({ title, max, value, onChange, onUpClick, onDownClick }) => {
           color={value > 1 ? mainColor : secondColor}
           size={60}
           style={{ cursor: value > 1 && 'pointer' }}
-          onClick={value > 1 && onDownClick}
+          onClick={value > 1 ? onDownClick : undefined}
         />
         <div style={{ flex: 1 }}>
           <Slider
@@ -35,7 +35,7 @@ const MySlider = ({ title, max, value, onChange, onUpClick, onDownClick }) => {
           color={value < max ? mainColor : secondColor}
           size={60}
           style={{ cursor: value < max && 'pointer' }}
-          onClick={value < max && onUpClick}
+          onClick={value < max ? onUpClick : undefined}
         />
       </div>
     </div>

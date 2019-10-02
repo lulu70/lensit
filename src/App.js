@@ -6,7 +6,8 @@ import { mainColor, secondColor } from './colors'
 // import transperantLogo from './assets/1024 trans.png'
 import throttle from 'lodash/throttle'
 import MySlider from './MySlider'
-
+import appstoreBadge from './assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg'
+import playstoreBadge from './assets/google-play-badge.png'
 class App extends Component {
   state = {
     aspectRatioMode: 'sBN',
@@ -121,6 +122,7 @@ class App extends Component {
       : '0'
     return (
       <div className='App'>
+        <Divider hidden />
         <div id='calc'>
           {/* <Divider hidden /> */}
           <div className='styledRow'>
@@ -202,6 +204,30 @@ class App extends Component {
             onUpClick={this.handleDistanceUpClick}
             onDownClick={this.handleDistanceDownClick}
           />
+        </div>
+        <Divider hidden />
+        <div className='footer'>
+          <a
+            href='https://apps.apple.com/us/app/lensit/id1468948972'
+            target='blank'
+          >
+            <img
+              src={appstoreBadge}
+              className='badge'
+              alt='Download_on_the_App_Store_Badge'
+            />
+          </a>
+          <a
+            href='https://play.google.com/store/apps/details?id=com.safeframe.lensit&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
+            target='blank'
+          >
+            <img
+              alt='Get it on Google Play'
+              className='badge'
+              // src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.eps'
+              src={playstoreBadge}
+            />
+          </a>
         </div>
       </div>
     )
