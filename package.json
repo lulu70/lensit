@@ -8,14 +8,14 @@
   },
   "dependencies": {
     "bcrypt": "^4.0.1",
-    "gh-pages": "^2.0.1",
+    "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
-    "react": "^16.4.0",
+    "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-icons": "^3.7.0",
+    "react-icons": "^3.9.0",
     "react-rangeslider": "^2.2.0",
-    "semantic-ui-css": "^2.3.1",
-    "semantic-ui-react": "^0.81.1"
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.81.3"
   },
   "scripts": {
     "predeploy": "npm run build",
